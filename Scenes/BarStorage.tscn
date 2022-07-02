@@ -1,0 +1,153 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Actors/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/box.png" type="Texture" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/BarStorage.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 505.5, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 53.25, 45.75 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 84.75, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 23, 23.5 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 503, 10 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 10, 205.5 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 25, 10 )
+
+[node name="BarStorage" type="Node2D"]
+position = Vector2( -1, 97 )
+script = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 403, 336 )
+collision_mask = 1
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 592, 401 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( -79.5, 0 )
+shape = SubResource( 1 )
+
+[node name="box2" type="StaticBody2D" parent="."]
+position = Vector2( 848, 367 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="box2"]
+position = Vector2( 25, 55 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box2"]
+position = Vector2( -3.5, -5.5 )
+shape = SubResource( 2 )
+
+[node name="box1" type="StaticBody2D" parent="."]
+position = Vector2( 929, 315 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="box1"]
+position = Vector2( 25, 55 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box1"]
+position = Vector2( -3.5, -5.5 )
+shape = SubResource( 2 )
+
+[node name="box3" type="StaticBody2D" parent="."]
+position = Vector2( 958, 367 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="box3"]
+position = Vector2( 25, 55 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="box3"]
+position = Vector2( -3.5, -5.5 )
+shape = SubResource( 2 )
+
+[node name="shelf" type="StaticBody2D" parent="."]
+light_mask = 2
+position = Vector2( 1009, 171 )
+collision_layer = 0
+collision_mask = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shelf"]
+position = Vector2( 6, 0 )
+shape = SubResource( 3 )
+
+[node name="Box" type="RigidBody2D" parent="."]
+position = Vector2( 937, 139 )
+collision_layer = 2
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Box"]
+scale = Vector2( 0.725441, 0.737533 )
+texture = ExtResource( 3 )
+
+[node name="boxcollision" type="CollisionShape2D" parent="Box"]
+shape = SubResource( 4 )
+
+[node name="roof" type="StaticBody2D" parent="."]
+position = Vector2( 998, 8 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roof"]
+position = Vector2( -493, 0 )
+shape = SubResource( 6 )
+
+[node name="wall" type="StaticBody2D" parent="."]
+position = Vector2( 1016, 10 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall"]
+position = Vector2( 2, 193 )
+shape = SubResource( 5 )
+
+[node name="wall2" type="StaticBody2D" parent="."]
+position = Vector2( 10, 9 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall2"]
+position = Vector2( 2, 193 )
+shape = SubResource( 5 )
+
+[node name="boxdeliveryloc" type="Area2D" parent="."]
+position = Vector2( 95, 380 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boxdeliveryloc"]
+position = Vector2( 15, 0 )
+shape = SubResource( 7 )
+
+[connection signal="body_entered" from="boxdeliveryloc" to="." method="_on_boxdeliveryloc_body_entered"]

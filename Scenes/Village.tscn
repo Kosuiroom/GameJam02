@@ -8,6 +8,7 @@ extents = Vector2( 213.5, 10 )
 [node name="Village" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 390, 288 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

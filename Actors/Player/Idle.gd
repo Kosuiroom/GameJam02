@@ -4,11 +4,8 @@ func enter(_msg := {}) -> void:
 	player.velocity = Vector2.ZERO
 
 func physics_update(delta: float) -> void:
-	player.velocity.y += player.gravity * delta
-	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
-
-	if player.velocity.y > 0.0 and not player.is_on_floor():
-		state_machine.transition_to("Air")
+	if not player.is_on_floor():
+		state_machine.transition_to("Jump")
 		return
 
 	if Input.is_action_just_pressed("Jump"):
